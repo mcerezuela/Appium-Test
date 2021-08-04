@@ -18,7 +18,6 @@ public class Android_Built_In_App_Demo {
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
-
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platformName", "Android");
         caps.setCapability("automationName", "UiAutomator2");
