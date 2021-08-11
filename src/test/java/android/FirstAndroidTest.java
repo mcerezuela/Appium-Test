@@ -10,7 +10,7 @@ public class FirstAndroidTest extends CommonUtils{
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
-        driver = androidSetUpVersion("9.0");
+        driver = androidAppSetUpVersion("9.0");
     }
 
     @Test

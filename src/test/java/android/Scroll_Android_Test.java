@@ -18,7 +18,7 @@ public class Scroll_Android_Test extends CommonUtils{
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
-        driver= androidSetUpVersion("9.0");
+        driver= androidAppSetUpVersion("9.0");
     }
 
     @Test

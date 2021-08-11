@@ -19,20 +19,32 @@ public class CommonUtils {
 
 
 
-    protected AndroidDriver androidSetUpVersion(String version) throws MalformedURLException {
+    protected AndroidDriver androidAppSetUpVersion(String version) throws MalformedURLException {
         //cd %ANDROID_HOME%\tools && emulator -avd Pixel_XL_API_22
+        //cd %ANDROID_HOME%\tools && emulator -avd Pixel_3_XL_API_28 (V9)
         DesiredCapabilities caps = prepareCommonCapabilities();
+        caps = setUpVersion(caps,version);
+        caps.setCapability("app", System.getProperty("user.dir") + "/apps/ApiDemos.apk");
+        return new AndroidDriver(new URL("http://localhost:4723/wd/hub"), caps);
+    }
+
+    private DesiredCapabilities setUpVersion(DesiredCapabilities caps, String version) {
         caps.setCapability("platformVersion", version);
+        return caps;
+    }
+
+    protected AndroidDriver androidChromeSetUpVersion(String version) throws MalformedURLException {
+        DesiredCapabilities caps = prepareCommonCapabilities();
+        caps = setUpVersion(caps,version);
+        caps.setCapability("browserName", "Chrome");
         return new AndroidDriver(new URL("http://localhost:4723/wd/hub"), caps);
     }
 
     private DesiredCapabilities prepareCommonCapabilities() {
         DesiredCapabilities commonCaps = new DesiredCapabilities();
         commonCaps.setCapability("platformName", "Android");
-        //commonCaps.setCapability("automationName", "espresso");
         commonCaps.setCapability("deviceName", "emulator-5554");
         commonCaps.setCapability("forceEspressoRebuild",true);
-        commonCaps.setCapability("app", System.getProperty("user.dir") + "/apps/ApiDemos.apk");
         return commonCaps;
     }
 }
