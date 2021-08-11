@@ -1,6 +1,5 @@
 package android;
 
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -11,7 +10,7 @@ public class FirstAndroidTest extends CommonUtils{
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
-        driver = androidSetUpVersion10();
+        driver = androidSetUpVersion("9.0");
     }
 
     @Test
