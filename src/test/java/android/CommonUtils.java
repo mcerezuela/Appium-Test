@@ -23,8 +23,18 @@ public class CommonUtils {
         //cd %ANDROID_HOME%\tools && emulator -avd Pixel_XL_API_22
         //cd %ANDROID_HOME%\tools && emulator -avd Pixel_3_XL_API_28 (V9)
         DesiredCapabilities caps = prepareCommonCapabilities();
-        caps = setUpVersion(caps,version);
+        setUpVersion(caps, version);
         caps.setCapability("app", System.getProperty("user.dir") + "/apps/ApiDemos.apk");
+        return new AndroidDriver(new URL("http://localhost:4723/wd/hub"), caps);
+    }
+
+    protected AndroidDriver androidHybridAppSetUpVersion(String version) throws MalformedURLException {
+        DesiredCapabilities caps = prepareCommonCapabilities();
+        setUpVersion(caps, version);
+        caps.setCapability("automationName", "UiAutomator1");
+        caps.setCapability("autoGrantPermissions", true);
+        caps.setCapability("noReset", true);
+        caps.setCapability("app", System.getProperty("user.dir") + "/apps/selendroid.apk");
         return new AndroidDriver(new URL("http://localhost:4723/wd/hub"), caps);
     }
 
@@ -35,7 +45,7 @@ public class CommonUtils {
 
     protected AndroidDriver androidChromeSetUpVersion(String version) throws MalformedURLException {
         DesiredCapabilities caps = prepareCommonCapabilities();
-        caps = setUpVersion(caps,version);
+        setUpVersion(caps, version);
         caps.setCapability("browserName", "Chrome");
         return new AndroidDriver(new URL("http://localhost:4723/wd/hub"), caps);
     }
